@@ -648,3 +648,113 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
+
+// Source: components/sections/HeroSection.tsx
+// Variable: HERO_QUERY
+// Query: *[_id == "singleton-profile"][0]{    firstName,    lastName,    headline,    headlineStaticText,    headlineAnimatedWords,    headlineAnimationDuration,    shortBio,    email,    phone,    location,    availability,    socialLinks,    yearsOfExperience,    profileImage  }
+export type HERO_QUERY_RESULT =
+  | {
+      firstName: null;
+      lastName: null;
+      headline: null;
+      headlineStaticText: null;
+      headlineAnimatedWords: null;
+      headlineAnimationDuration: null;
+      shortBio: null;
+      email: null;
+      phone: null;
+      location: null;
+      availability: null;
+      socialLinks: null;
+      yearsOfExperience: null;
+      profileImage: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      headline: null;
+      headlineStaticText: null;
+      headlineAnimatedWords: null;
+      headlineAnimationDuration: null;
+      shortBio: null;
+      email: null;
+      phone: null;
+      location: null;
+      availability: null;
+      socialLinks: null;
+      yearsOfExperience: number | null;
+      profileImage: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      headline: null;
+      headlineStaticText: null;
+      headlineAnimatedWords: null;
+      headlineAnimationDuration: null;
+      shortBio: null;
+      email: null;
+      phone: null;
+      location: string | null;
+      availability: null;
+      socialLinks: null;
+      yearsOfExperience: null;
+      profileImage: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      headline: null;
+      headlineStaticText: null;
+      headlineAnimatedWords: null;
+      headlineAnimationDuration: null;
+      shortBio: null;
+      email: string | null;
+      phone: null;
+      location: null;
+      availability: null;
+      socialLinks: null;
+      yearsOfExperience: null;
+      profileImage: null;
+    }
+  | {
+      firstName: string | null;
+      lastName: string | null;
+      headline: string | null;
+      headlineStaticText: string | null;
+      headlineAnimatedWords: Array<string> | null;
+      headlineAnimationDuration: number | null;
+      shortBio: string | null;
+      email: string | null;
+      phone: string | null;
+      location: string | null;
+      availability: "available" | "open" | "unavailable" | null;
+      socialLinks: {
+        github?: string;
+        linkedin?: string;
+        twitter?: string;
+        website?: string;
+        medium?: string;
+        devto?: string;
+        youtube?: string;
+        stackoverflow?: string;
+      } | null;
+      yearsOfExperience: number | null;
+      profileImage: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      } | null;
+    }
+  | null;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '*[_id == "singleton-profile"][0]{\n    firstName,\n    lastName,\n    headline,\n    headlineStaticText,\n    headlineAnimatedWords,\n    headlineAnimationDuration,\n    shortBio,\n    email,\n    phone,\n    location,\n    availability,\n    socialLinks,\n    yearsOfExperience,\n    profileImage\n  }': HERO_QUERY_RESULT;
+  }
+}
