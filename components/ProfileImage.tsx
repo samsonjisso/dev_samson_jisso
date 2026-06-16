@@ -4,7 +4,7 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import { MessageCircle, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-// import { useSidebar } from "../ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar";
 
 interface ProfileImageProps {
   imageUrl: string;
@@ -18,15 +18,15 @@ export function ProfileImage({
   lastName,
 }: ProfileImageProps) {
   const [isHovered, setIsHovered] = useState(false);
-  // const { toggleSidebar, open } = useSidebar();
+  const { toggleSidebar, open } = useSidebar();
   const { isSignedIn } = useUser();
   const { openSignIn } = useClerk();
 
   return (
     <button
       type="button"
-      // onClick={() => (isSignedIn ? toggleSidebar() : openSignIn())}
-      onClick={() => (console.log("clicked"))}
+      onClick={() => (isSignedIn ? toggleSidebar() : openSignIn())}
+      // onClick={() => (console.log("clicked"))}
       className="relative aspect-square rounded-2xl overflow-hidden border-4 border-primary/20 block group cursor-pointer w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -55,7 +55,7 @@ export function ProfileImage({
           isHovered ? "opacity-100" : "opacity-0"
         }`}
       >
-        {/* <div className="text-center space-y-3">
+        <div className="text-center space-y-3">
           {open ? (
             <X className="w-12 h-12 text-white mx-auto" />
           ) : (
@@ -68,7 +68,7 @@ export function ProfileImage({
           <div className="text-white/80 text-sm">
             {open ? "Click to close chat" : "Click to open chat"}
           </div>
-        </div> */}
+        </div>
       </div>
     </button>
   );

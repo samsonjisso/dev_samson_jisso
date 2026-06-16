@@ -3,6 +3,8 @@ import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { sanityFetch } from "@/sanity/lib/live";
 import { defineQuery } from "next-sanity";
 import Link from "next/link";
+import { urlFor } from "@/sanity/lib/image";
+import { ProfileImage } from "../ProfileImage";
 
 const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
     firstName,
@@ -125,7 +127,7 @@ async function HeroSection() {
       </div>
 
       {/* Profile Image */}
-      {/* {profile.profileImage && (
+      {profile.profileImage && (
         <ProfileImage
           imageUrl={urlFor(profile.profileImage)
             .width(600)
@@ -134,7 +136,7 @@ async function HeroSection() {
           firstName={profile.firstName || ""}
           lastName={profile.lastName || ""}
         />
-      )} */}
+      )} 
     </div>
   </div>
 </div>
