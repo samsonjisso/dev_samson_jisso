@@ -11,6 +11,7 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.83",
     "@base-ui/react": "^1.5.0",
     "@clerk/nextjs": "^7.5.2",
     "@portabletext/react": "^6.2.0",
@@ -18,6 +19,7 @@
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.31.1",
+    "ai": "^6.0.208",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.18.0",
