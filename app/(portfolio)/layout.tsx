@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import SidebarToggle from "@/components/SidebarToggle";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
             <SidebarInset>{children}</SidebarInset>
             <AppSidebar side="right" />
             <SidebarToggle />
+            <ChatWidget />
           </SidebarProvider>
           <SanityLive />
         </body>
