@@ -1,3 +1,4 @@
+import { auth } from '@clerk/nextjs/server';
 import { google } from '@ai-sdk/google';
 import { convertToModelMessages, streamText, type UIMessage } from 'ai';
 import { fetchPortfolioForAI } from '@/lib/chatBotSanity';
@@ -6,6 +7,14 @@ export const maxDuration = 30;
 
 export async function POST(req: Request) {
   try {
+    const { userId } = await auth();
+    if (!userId) {
+      return new Response(JSON.stringify({ error: 'Authentication required' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     // 1. Grab your real-time Sanity portfolio content

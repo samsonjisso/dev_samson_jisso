@@ -29,6 +29,19 @@ export async function fetchPortfolioForAI() {
       achievements,
       // 2. Traverses references to pull the actual text names of your skills
       "technologiesUsed": technologies[]->title 
+    },
+    "profile": *[_type == "profile"] {
+      firstName,
+      lastName,
+      headline,
+      email,
+      phone,
+      location,
+      summary
+    },
+    "skills": *[_type == "skill"] {
+      name,
+      proficiency
     }
   }`;
 
