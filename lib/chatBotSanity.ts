@@ -1,6 +1,5 @@
 import { sanityFetch } from "@/sanity/lib/live";
 
-
 export async function fetchPortfolioForAI() {
   // Pulls everything relevant to your resume and identity from Sanity
   const query = `{
@@ -46,5 +45,5 @@ export async function fetchPortfolioForAI() {
   }`;
 
   const data = await sanityFetch({ query });
-  return JSON.stringify(data, null, 2); 
+  return JSON.stringify(data, null, 2);
 }
