@@ -1026,6 +1026,37 @@ export type ABOUT_QUERY_RESULT =
     }
   | null;
 
+// Source: components/sections/BlogSection.tsx
+// Variable: BLOG_QUERY
+// Query: *[_type == "blog"] | order(publishedAt desc){  title,  slug,  excerpt,  category,  tags,  publishedAt,  readTime,  featuredImage}
+export type BLOG_QUERY_RESULT = Array<{
+  title: string | null;
+  slug: Slug | null;
+  excerpt: string | null;
+  category:
+    | "ai-ml"
+    | "best-practices"
+    | "career"
+    | "news"
+    | "opinion"
+    | "showcase"
+    | "technical"
+    | "tutorial"
+    | "web-dev"
+    | null;
+  tags: Array<string> | null;
+  publishedAt: string | null;
+  readTime: number | null;
+  featuredImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
+
 // Source: components/sections/HeroSection.tsx
 // Variable: HERO_QUERY
 // Query: *[_id == "singleton-profile"][0]{    firstName,    lastName,    headline,    headlineStaticText,    headlineAnimatedWords,    headlineAnimationDuration,    shortBio,    email,    phone,    location,    availability,    socialLinks,    yearsOfExperience,    profileImage  }
@@ -1128,12 +1159,68 @@ export type HERO_QUERY_RESULT =
     }
   | null;
 
+// Source: components/sections/SkillsSection.tsx
+// Variable: SKILLS_QUERY
+// Query: *[_type == "skill"] | order(category asc, order asc){  name,  category,  proficiency,  percentage,  yearsOfExperience,  color}
+export type SKILLS_QUERY_RESULT = Array<{
+  name: string | null;
+  category:
+    | "ai-ml"
+    | "backend"
+    | "cloud"
+    | "database"
+    | "design"
+    | "devops"
+    | "frontend"
+    | "mobile"
+    | "other"
+    | "soft-skills"
+    | "testing"
+    | "tools"
+    | null;
+  proficiency: "advanced" | "beginner" | "expert" | "intermediate" | null;
+  percentage: number | null;
+  yearsOfExperience: number | null;
+  color: string | null;
+}>;
+
+// Source: components/sections/TestimonialsSection.tsx
+// Variable: TESTIMONIALS_QUERY
+// Query: *[_type == "testimonial" && featured == true] | order(order asc){  name,  position,  company,  testimonial,  rating,  date,  avatar,  companyLogo,  linkedinUrl}
+export type TESTIMONIALS_QUERY_RESULT = Array<{
+  name: string | null;
+  position: string | null;
+  company: string | null;
+  testimonial: string | null;
+  rating: number | null;
+  date: string | null;
+  avatar: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  companyLogo: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  linkedinUrl: string | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_id == "singleton-profile"][0]{\n    _id,\n    _type,\n    _createdAt,\n    _updatedAt,\n    _rev,\n    firstName,\n    lastName,\n    headline,\n    shortBio,\n    email,\n    phone,\n    location,\n    availability,\n    socialLinks,\n    yearsOfExperience,\n    profileImage\n  }': CHAT_PROFILE_QUERY_RESULT;
     '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  fullBio,\n  yearsOfExperience,\n  stats,\n  email,\n  phone,\n  location\n}': ABOUT_QUERY_RESULT;
+    '*[_type == "blog"] | order(publishedAt desc){\n  title,\n  slug,\n  excerpt,\n  category,\n  tags,\n  publishedAt,\n  readTime,\n  featuredImage\n}': BLOG_QUERY_RESULT;
     '*[_id == "singleton-profile"][0]{\n    firstName,\n    lastName,\n    headline,\n    headlineStaticText,\n    headlineAnimatedWords,\n    headlineAnimationDuration,\n    shortBio,\n    email,\n    phone,\n    location,\n    availability,\n    socialLinks,\n    yearsOfExperience,\n    profileImage\n  }': HERO_QUERY_RESULT;
+    '*[_type == "skill"] | order(category asc, order asc){\n  name,\n  category,\n  proficiency,\n  percentage,\n  yearsOfExperience,\n  color\n}': SKILLS_QUERY_RESULT;
+    '*[_type == "testimonial" && featured == true] | order(order asc){\n  name,\n  position,\n  company,\n  testimonial,\n  rating,\n  date,\n  avatar,\n  companyLogo,\n  linkedinUrl\n}': TESTIMONIALS_QUERY_RESULT;
   }
 }

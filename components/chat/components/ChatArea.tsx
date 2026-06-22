@@ -1,9 +1,11 @@
 import { UIMessage } from "ai";
 import { useUser } from "@clerk/nextjs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useChat } from "@ai-sdk/react";
 import { Send } from "lucide-react";
 import { CHAT_PROFILE_QUERY_RESULT } from "@/sanity.types";
+import { formatSeconds, getGreeting } from "./Util";
+import { Textarea } from "@/components/ui/textarea";
 
 export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
   const [remainingPrompts, setRemainingPrompts] = useState<number | null>(null);
@@ -12,25 +14,13 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
   const [input, setInput] = useState("");
 
   // Handle countdown timer for the cooldown period
-
-  useState(() => {
+  useEffect(() => {
+    if (cooldownSeconds <= 0) return;
     const timer = setInterval(() => {
       setCooldownSeconds((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
     return () => clearInterval(timer);
-  });
-
-  const getGreeting = () => {
-    if (!profile?.firstName) {
-      return "Ask me anything about my work, experience, or projects.";
-    }
-
-    const fullName = [profile.firstName, profile.lastName]
-      .filter(Boolean)
-      .join(" ");
-
-    return `Hi! I'm ${fullName}. Ask me anything about my work, experience, or projects.`;
-  };
+  }, [cooldownSeconds]);
 
   // Initialize initialMessages from localStorage on client side
   const [initialMessages] = useState<UIMessage[]>(() => {
@@ -75,29 +65,38 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
 
   const isLoading = status === "submitted" || status === "streaming";
 
-  // Persist messages whenever they change using a proper useEffect
-  useState(() => {
-    if (typeof window !== "undefined") {
-      const handleBeforeUnload = () => {
-        if (messages.length > 0) {
-          localStorage.setItem(
-            "portfolio-chat-messages",
-            JSON.stringify(messages),
-          );
-        }
-      };
-      window.addEventListener("beforeunload", handleBeforeUnload);
-      return () =>
-        window.removeEventListener("beforeunload", handleBeforeUnload);
+  // Persist messages whenever they change and on unload
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (messages.length > 0) {
+        localStorage.setItem(
+          "portfolio-chat-messages",
+          JSON.stringify(messages),
+        );
+      } else {
+        localStorage.removeItem("portfolio-chat-messages");
+      }
+    } catch (e) {
+      console.error("Failed to persist chat messages", e);
     }
-  });
+  }, [messages]);
 
-  // Track state changes to messages dynamically so refreshes reflect immediately
-  useState(() => {
-    if (typeof window !== "undefined" && messages.length > 0) {
-      localStorage.setItem("portfolio-chat-messages", JSON.stringify(messages));
-    }
-  });
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleBeforeUnload = () => {
+      if (messages.length > 0) {
+        localStorage.setItem(
+          "portfolio-chat-messages",
+          JSON.stringify(messages),
+        );
+      } else {
+        localStorage.removeItem("portfolio-chat-messages");
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [messages]);
 
   const { isSignedIn } = useUser();
 
@@ -123,17 +122,12 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
         </div>
         {cooldownSeconds > 0 && (
           <span className="font-semibold text-amber-600 animate-pulse">
-            Cooldown: {cooldownSeconds}s
+            Cooldown: {formatSeconds(cooldownSeconds)}
           </span>
         )}
       </div>
 
       <div className="flex-1 space-y-3 overflow-y-auto bg-gray-50 p-4">
-        {messages.length === 0 && (
-          <p className="mt-4 text-center text-sm text-gray-500">
-            {getGreeting()}
-          </p>
-        )}
         {messages.map((m) => (
           <div
             key={m.id}
@@ -142,7 +136,7 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
             <div
               className={`max-w-[85%] rounded-xl p-3 text-sm ${
                 m.role === "user"
-                  ? "bg-black text-white"
+                  ? "bg-blue-200   text-black"
                   : "bg-gray-200 text-gray-800"
               }`}
             >
@@ -177,16 +171,16 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
           setInput("");
           setErrorMessage(null);
         }}
-        className="flex flex-col shrink-0 gap-2 border-t border-gray-200 bg-white p-3"
+        className="flex flex-col shrink-0 gap-2 border-t border-gray-100 bg-white p-3 shadow-md"
       >
         <div className="flex gap-2">
-          <input
-            className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-black focus:outline-none disabled:bg-gray-50 disabled:text-gray-400"
+          <Textarea
+            className="flex-1 rounded-2xl border border-transparent bg-white/70 backdrop-blur-sm px-4 py-2 text-sm placeholder-gray-400 resize-none shadow-sm transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 disabled:bg-gray-50 disabled:text-gray-400"
             value={input}
             disabled={cooldownSeconds > 0}
             placeholder={
               cooldownSeconds > 0
-                ? `Wait ${cooldownSeconds}s to request new prompt...`
+                ? `Wait ${formatSeconds(cooldownSeconds)} to request new prompt...`
                 : "Ask a question..."
             }
             onChange={(e) => setInput(e.target.value)}
@@ -194,14 +188,15 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
           <button
             type="submit"
             disabled={!input.trim() || cooldownSeconds > 0}
-            className="rounded-lg bg-black p-2 text-white transition-colors hover:bg-gray-800 disabled:bg-gray-200 disabled:text-gray-400 flex items-center justify-center min-w-[36px]"
+            className="rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white w-10 h-10 flex items-center justify-center shadow-md hover:shadow-lg active:scale-95 transform transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Send message"
           >
             <Send size={16} />
           </button>
         </div>
         {cooldownSeconds > 0 && (
           <p className="text-[10px] text-amber-600 text-center">
-            Wait {cooldownSeconds}s to request a new prompt
+            Wait {formatSeconds(cooldownSeconds)} to request a new prompt
           </p>
         )}
       </form>

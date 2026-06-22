@@ -9,12 +9,15 @@ export function ChatHeader({
 }) {
   const { toggleSidebar } = useSidebar();
   return (
-    <div className="flex shrink-0 items-center justify-between bg-black p-4 text-white">
+    <div className="flex shrink-0 items-center text-black justify-between p-4">
       <div>
-        <h3 className="text-sm font-semibold">
+        <h3 className="text-sm  font-semibold">
           Chat with {profile?.firstName || "Me"}
         </h3>
-        <p className="text-xs text-gray-400">Powered by Gemini AI</p>
+        <p className="text-xs text-gray-500">
+          Hi! I'm {profile?.firstName}. Ask me anything about my work, experience, or projects!
+        </p>
+
       </div>
       <button
         type="button"
