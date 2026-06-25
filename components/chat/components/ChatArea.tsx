@@ -102,7 +102,7 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
 
   return (
     <>
-      <div className="flex shrink-0 items-center justify-between border-b border-gray-100 bg-gray-50 px-4 py-2 text-xs text-gray-500">
+      <div className="flex shrink-0 items-center justify-between border-b border-gray-100 px-4 py-2 text-xs text-gray-500">
         <div>
           {remainingPrompts !== null ? (
             <span>
@@ -127,7 +127,7 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
         )}
       </div>
 
-      <div className="flex-1 space-y-3 overflow-y-auto bg-gray-50 p-4">
+      <div className="flex-1 space-y-3 overflow-y-auto p-4">
         {messages.map((m) => (
           <div
             key={m.id}
@@ -171,11 +171,11 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
           setInput("");
           setErrorMessage(null);
         }}
-        className="flex flex-col shrink-0 gap-2 border-t border-gray-100 bg-white p-3 shadow-md"
+        className="flex flex-col shrink-0 gap-2 border-t border-gray-100 p-3 shadow-md"
       >
         <div className="flex gap-2">
           <Textarea
-            className="flex-1 rounded-2xl border border-transparent bg-white/70 backdrop-blur-sm px-4 py-2 text-sm placeholder-gray-400 resize-none shadow-sm transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 disabled:bg-gray-50 disabled:text-gray-400"
+            className="flex-1 rounded-2xl border border-transparent backdrop-blur-sm px-4 py-2 text-sm placeholder-gray-400 resize-none shadow-sm transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 disabled:bg-gray-50 disabled:text-gray-400"
             value={input}
             disabled={cooldownSeconds > 0}
             placeholder={
