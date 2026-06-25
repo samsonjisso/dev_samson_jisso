@@ -6,6 +6,9 @@ import { SanityLive } from "@/sanity/lib/live";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import SidebarToggle from "@/components/SidebarToggle";
+import { FloatingDock } from "@/components/FloatingDock";
+import { ModeToggle } from "@/components/DarkModeToggle";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +34,24 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+        suppressHydrationWarning
       >
         <body className="min-h-full flex flex-col">
-          <SidebarProvider>
-            <SidebarInset>{children}</SidebarInset>
-            <AppSidebar side="right" />
-            <SidebarToggle />
-          </SidebarProvider>
-          <SanityLive />
+          <ThemeProvider>
+            <SidebarProvider defaultOpen={false}>
+              <SidebarInset>{children}</SidebarInset>
+              <AppSidebar side="right" />
+              <FloatingDock />
+              <SidebarToggle />
+              {/* Mode Toggle - Desktop: bottom right next to AI chat, Mobile: top right next to burger menu */}
+              <div className="fixed md:bottom-6 md:right-24 top-4 right-18 md:top-auto md:left-auto z-20">
+                <div className="w-10 h-10 md:w-12 md:h-12">
+                  <ModeToggle />
+                </div>
+              </div>
+            </SidebarProvider>
+            <SanityLive />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

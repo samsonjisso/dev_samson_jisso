@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { defineQuery } from "next-sanity";
-import WorldMapDemo from "@/components/world-map-demo";
 import { sanityFetch } from "@/sanity/lib/live";
 import { ContactForm } from "./ContactForm";
+import WorldMapDemo from "../world-map-demo";
 
 const PROFILE_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   email,
@@ -19,7 +19,7 @@ export async function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-20 px-6 pb-40 bg-muted/30">
+    <section id="contact" className="py-20 px-6 pb-40 bg-muted/10">
       <WorldMapDemo />
 
       <div className="container mx-auto max-w-4xl">

@@ -14,6 +14,7 @@ export function ContactForm() {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
 
+
     startTransition(async () => {
       const result = await submitContactForm(formData);
 

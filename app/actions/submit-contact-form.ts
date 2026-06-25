@@ -1,6 +1,6 @@
 "use server";
 
-// import { serverClient } from "@/sanity/lib/serverClient";
+import { serverClient } from "@/sanity/lib/serverClient";
 
 export async function submitContactForm(formData: FormData) {
   try {
@@ -18,16 +18,16 @@ export async function submitContactForm(formData: FormData) {
     }
 
     // Create the document in Sanity
-    const result  = {}
-    // const result = await serverClient.create({
-    //   _type: "contact",
-    //   name,
-    //   email,
-    //   subject,
-    //   message,
-    //   submittedAt: new Date().toISOString(),
-    //   status: "new",
-    // });
+  
+    const result = await serverClient.create({
+      _type: "contact",
+      name,
+      email,
+      subject,
+      message,
+      submittedAt: new Date().toISOString(),
+      status: "new",
+    });
 
     return {
       success: true,
