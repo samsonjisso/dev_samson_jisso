@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { type CHAT_PROFILE_QUERY_RESULT } from "@/sanity.types";
+import type { CHAT_PROFILE_QUERY_RESULT } from "@/sanity.types";
 import { useSidebar } from "../../ui/sidebar";
 
 export function ChatHeader({
@@ -15,9 +15,9 @@ export function ChatHeader({
           Chat with {profile?.firstName || "Me"}
         </h3>
         <p className="text-xs text-gray-500">
-          Hi! I'm {profile?.firstName}. Ask me anything about my work, experience, or projects!
+          Hi! I'm {profile?.firstName}. Ask me anything about my work,
+          experience, or projects!
         </p>
-
       </div>
       <button
         type="button"

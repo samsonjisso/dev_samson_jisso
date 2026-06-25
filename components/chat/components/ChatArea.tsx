@@ -1,13 +1,12 @@
-import { UIMessage } from "ai";
-import { useUser } from "@clerk/nextjs";
-import { useState, useEffect } from "react";
 import { useChat } from "@ai-sdk/react";
+import { useUser } from "@clerk/nextjs";
+import type { UIMessage } from "ai";
 import { Send } from "lucide-react";
-import { CHAT_PROFILE_QUERY_RESULT } from "@/sanity.types";
-import { formatSeconds, getGreeting } from "./Util";
+import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
+import { formatSeconds } from "./Util";
 
-export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
+export function ChatArea() {
   const [remainingPrompts, setRemainingPrompts] = useState<number | null>(null);
   const [cooldownSeconds, setCooldownSeconds] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -102,7 +101,10 @@ export function ChatArea({ profile }: { profile: CHAT_PROFILE_QUERY_RESULT }) {
 
   return (
     <>
-      <div className="flex shrink-0 items-center justify-between border-b border-gray-100 px-4 py-2 text-xs text-gray-500">
+      <div
+        id="chat-area"
+        className="flex shrink-0 items-center justify-between border-b border-border px-4 py-2 text-xs text-muted-foreground"
+      >
         <div>
           {remainingPrompts !== null ? (
             <span>

@@ -5,7 +5,7 @@ import ChatWrapper from "./chat/ChatWrapper";
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarContent className="h-full w-full bg-white">
+      <SidebarContent className="h-full w-full">
         <Suspense fallback={<div>Loading...</div>}>
           <ChatWrapper />
         </Suspense>
