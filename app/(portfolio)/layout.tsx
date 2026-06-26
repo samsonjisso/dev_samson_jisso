@@ -9,6 +9,9 @@ import SidebarToggle from "@/components/SidebarToggle";
 import { FloatingDock } from "@/components/FloatingDock";
 import { ModeToggle } from "@/components/DarkModeToggle";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { draftMode } from "next/headers";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { VisualEditing } from "next-sanity/visual-editing";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
   description: "Portfolio Website",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -51,6 +54,12 @@ export default function RootLayout({
               </div>
             </SidebarProvider>
             <SanityLive />
+             {(await draftMode()).isEnabled && (
+              <>
+                <VisualEditing/>
+                <DisableDraftMode />
+              </>
+            )}
           </ThemeProvider>
         </body>
       </html>
