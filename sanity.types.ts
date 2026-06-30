@@ -351,11 +351,7 @@ export type Experience = {
   company?: string;
   position?: string;
   employmentType?:
-    | "full-time"
-    | "part-time"
-    | "contract"
-    | "freelance"
-    | "internship";
+    "full-time" | "part-time" | "contract" | "freelance" | "internship";
   location?: string;
   startDate?: string;
   endDate?: string;
@@ -1006,14 +1002,7 @@ export type ABOUT_QUERY_RESULT =
           _key: string;
         }>;
         style?:
-          | "blockquote"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "normal";
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -1205,12 +1194,7 @@ export type EXPERIENCE_QUERY_RESULT = Array<{
   company: string | null;
   position: string | null;
   employmentType:
-    | "contract"
-    | "freelance"
-    | "full-time"
-    | "internship"
-    | "part-time"
-    | null;
+    "contract" | "freelance" | "full-time" | "internship" | "part-time" | null;
   location: string | null;
   startDate: string | null;
   endDate: string | null;
