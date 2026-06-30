@@ -9,12 +9,12 @@ export function ChatHeader({
 }) {
   const { toggleSidebar } = useSidebar();
   return (
-    <div className="flex shrink-0 items-center text-black justify-between p-4">
+    <div className="flex shrink-0 items-center justify-between p-4">
       <div>
         <h3 className="text-sm  font-semibold">
           Chat with {profile?.firstName || "Me"}
         </h3>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-400">
           Hi! I'm {profile?.firstName}. Ask me anything about my work,
           experience, or projects!
         </p>
@@ -25,7 +25,7 @@ export function ChatHeader({
         className="hover:text-gray-300"
         aria-label="Close chat"
       >
-        <X size={18} />
+        <X size={25} />
       </button>
     </div>
   );

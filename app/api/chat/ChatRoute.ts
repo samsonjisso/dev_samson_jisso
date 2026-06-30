@@ -12,13 +12,7 @@ export async function POST(req: Request) {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return new Response(
-        JSON.stringify({ error: "Authentication required" }),
-        {
-          status: 401,
-          headers: { "Content-Type": "application/json" },
-        },
-      );
+      return new Response("Authentication required", { status: 401 });
     }
 
     // 1. Rate Limit Check (UserId based + IP backup)

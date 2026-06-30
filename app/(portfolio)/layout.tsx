@@ -13,15 +13,6 @@ import { draftMode } from "next/headers";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { VisualEditing } from "next-sanity/visual-editing";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Samson Jisso Developer",
@@ -46,13 +37,14 @@ export default async function RootLayout({
               <AppSidebar side="right" />
               <FloatingDock />
               <SidebarToggle />
-              {/* Mode Toggle - Desktop: bottom right next to AI chat, Mobile: top right next to burger menu */}
-              <div className="fixed md:bottom-6 md:right-24 top-4 right-18 md:top-auto md:left-auto z-20">
+            {/* Mode Toggle - Desktop: bottom right next to AI chat, Mobile: top right next to burger menu */}
+              <div className="fixed md:bottom-6 md:right-24 top-1 right-18 md:top-auto md:left-auto z-0">
                 <div className="w-10 h-10 md:w-12 md:h-12">
                   <ModeToggle />
                 </div>
               </div>
             </SidebarProvider>
+              
             <SanityLive />
              {(await draftMode()).isEnabled && (
               <>

@@ -173,7 +173,7 @@ export function ChatArea() {
           setInput("");
           setErrorMessage(null);
         }}
-        className="flex flex-col shrink-0 gap-2 border-t border-gray-100 p-3 shadow-md"
+        className="flex flex-col shrink-0 gap-2 border-gray-100 p-3 shadow-md"
       >
         <div className="flex gap-2">
           <Textarea

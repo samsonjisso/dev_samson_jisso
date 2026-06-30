@@ -45,7 +45,6 @@ export const AnimatedTestimonials = ({
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
-        <div>
           <div className="relative h-80 w-full">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
@@ -91,7 +90,6 @@ export const AnimatedTestimonials = ({
               ))}
             </AnimatePresence>
           </div>
-        </div>
         <div className="flex flex-col justify-between py-4">
           <motion.div
             key={active}
