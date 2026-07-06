@@ -26,7 +26,7 @@ export async function TestimonialsSection() {
   }
 
   // Map Sanity testimonials to AnimatedTestimonials format
-  const formattedTestimonials = testimonials.map((testimonial) => ({
+  const   formattedTestimonials = testimonials.map((testimonial) => ({
     quote: testimonial.testimonial || "",
     name: testimonial.name || "Anonymous",
     designation: testimonial.company
@@ -47,7 +47,7 @@ export async function TestimonialsSection() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-8">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Client Testimonials
+           Voices About My Work
           </h2>
           <p className="text-xl text-muted-foreground">
             What people say about working with me
