@@ -18,10 +18,12 @@ const PROJECTS_QUERY =
 
 export async function ProjectsSection() {
   const { data: projects } = await sanityFetch({ query: PROJECTS_QUERY });
+  console.log("before return projects are:", projects)
 
   if (!projects || projects.length === 0) {
     return null;
   }
+  console.log("afterReturn projects: ", projects)
 
   return (
     <section id="projects" className="py-20 px-6 bg-muted/30">
