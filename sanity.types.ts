@@ -649,7 +649,7 @@ export type NAVIGATION_QUERY_RESULT = Array<{
 
 // Source: components/chat/ChatWrapper.tsx
 // Variable: CHAT_PROFILE_QUERY
-// Query: *[_id == "singleton-profile"][0]{    _id,    _type,    _createdAt,    _updatedAt,    _rev,    firstName,    lastName,    headline,    shortBio,    email,    phone,    location,    availability,    socialLinks,    yearsOfExperience,    profileImage  }
+// Query: *[_id == "singleton-profile"][0]{    _id,    _type,    _createdAt,    _updatedAt,    _rev,    firstName,    lastName  }
 export type CHAT_PROFILE_QUERY_RESULT =
   | {
       _id: "singleton-profile";
@@ -659,15 +659,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -677,15 +668,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -695,15 +677,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -713,15 +686,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: string | null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -731,15 +695,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -749,15 +704,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: string | null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -767,15 +713,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -785,25 +722,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: string | null;
       lastName: string | null;
-      headline: string | null;
-      shortBio: string | null;
-      email: null;
-      phone: null;
-      location: string | null;
-      availability: "available" | "open" | "unavailable" | null;
-      socialLinks: {
-        github?: string;
-        linkedin?: string;
-      } | null;
-      yearsOfExperience: number | null;
-      profileImage: {
-        asset?: SanityImageAssetReference;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-      } | null;
     }
   | {
       _id: "singleton-profile";
@@ -813,15 +731,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -831,15 +740,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -849,15 +749,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -867,15 +758,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -885,15 +767,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -903,15 +776,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: number | null;
-      profileImage: null;
     }
   | {
       _id: "singleton-profile";
@@ -921,15 +785,6 @@ export type CHAT_PROFILE_QUERY_RESULT =
       _rev: string;
       firstName: null;
       lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
     }
   | null;
 
@@ -1468,7 +1323,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "navigation"] | order(order asc){\n  title,\n  href,\n  icon,\n  isExternal\n}': NAVIGATION_QUERY_RESULT;
-    '*[_id == "singleton-profile"][0]{\n    _id,\n    _type,\n    _createdAt,\n    _updatedAt,\n    _rev,\n    firstName,\n    lastName,\n    headline,\n    shortBio,\n    email,\n    phone,\n    location,\n    availability,\n    socialLinks,\n    yearsOfExperience,\n    profileImage\n  }': CHAT_PROFILE_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n    _id,\n    _type,\n    _createdAt,\n    _updatedAt,\n    _rev,\n    firstName,\n    lastName\n  }': CHAT_PROFILE_QUERY_RESULT;
     '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  fullBio,\n  yearsOfExperience,\n  stats,\n  email,\n  phone,\n  location\n}': ABOUT_QUERY_RESULT;
     '*[_type == "achievement"] | order(date desc){\n  title,\n  type,\n  issuer,\n  date,\n  description,\n  image,\n  url,\n  featured,\n  order\n}': ACHIEVEMENTS_QUERY_RESULT;
     '*[_type == "blog"] | order(publishedAt desc){\n  title,\n  slug,\n  excerpt,\n  category,\n  tags,\n  publishedAt,\n  readTime,\n  featuredImage\n}': BLOG_QUERY_RESULT;
