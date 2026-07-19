@@ -1,9 +1,9 @@
+import Link from "next/link";
+import { defineQuery } from "next-sanity";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
-import { sanityFetch } from "@/sanity/lib/live";
-import { defineQuery } from "next-sanity";
-import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
+import { sanityFetch } from "@/sanity/lib/live";
 import { ProfileImage } from "../ProfileImage";
 
 const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
@@ -31,7 +31,7 @@ async function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden"
     >
-      <BackgroundRippleEffect rows={8} cols={27} cellSize={56} />
+      <BackgroundRippleEffect rows={8} cols={27} />
 
       <div className="relative z-10 container mx-auto max-w-6xl">
         <div className="@container">

@@ -2,9 +2,9 @@
 
 import { useClerk, useUser } from "@clerk/nextjs";
 import { MessageCircle, X } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 import { useSidebar } from "@/components/ui/sidebar";
+import { AsciiArt } from "./ui/ascii-art";
 
 interface ProfileImageProps {
   imageUrl: string;
@@ -14,8 +14,6 @@ interface ProfileImageProps {
 
 export function ProfileImage({
   imageUrl,
-  firstName,
-  lastName,
 }: ProfileImageProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { toggleSidebar, open } = useSidebar();
@@ -26,19 +24,20 @@ export function ProfileImage({
     <button
       type="button"
       onClick={() => (isSignedIn ? toggleSidebar() : openSignIn())}
-      // onClick={() => (console.log("clicked"))}
       className="relative aspect-square rounded-2xl overflow-hidden block group cursor-pointer w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Toggle AI Chat Sidebar"
     >
-      <Image
-        fill
+
+      <AsciiArt
         src={imageUrl}
-        alt={`${firstName} ${lastName}`}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-        preload
+        resolution={300}
+        color="#06b6d4"
+        inverted
+        animateOnView={false}
+        objectPosition="top"
+        className="absolute inset-0 h-full w-full bg-black"
       />
 
       {/* Online Badge */}
