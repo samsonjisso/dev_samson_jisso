@@ -56,7 +56,6 @@ export async function TestimonialsSection() {
 
         <AnimatedTestimonials
           testimonials={formattedTestimonials}
-          autoplay={true}
         />
       </div>
     </section>

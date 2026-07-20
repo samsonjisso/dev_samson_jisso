@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { SanityLive } from "@/sanity/lib/live";
@@ -38,7 +37,7 @@ export default async function RootLayout({
               <FloatingDock />
               <SidebarToggle />
             {/* Mode Toggle - Desktop: bottom right next to AI chat, Mobile: top right next to burger menu */}
-              <div className="fixed md:bottom-6 md:right-24 top-1 right-18 md:top-auto md:left-auto z-0">
+              <div className="fixed  top-6 md:bottom-6 md:right-24 md:top-auto md:left-auto z-50 right-14">
                 <div className="w-10 h-10 md:w-12 md:h-12">
                   <ModeToggle />
                 </div>
