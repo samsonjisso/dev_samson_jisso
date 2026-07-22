@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     const result = streamText({
       model: google("gemini-2.5-flash"),
       messages: await convertToModelMessages(messages),
-      system: botInstructions + "\n\n ProfileData:\n" + contextData,
+      system: `${botInstructions} \n\n ProfileData:\n ${contextData}`,
     });
 
     return result.toUIMessageStreamResponse({
